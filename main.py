@@ -8,9 +8,13 @@ import matplotlib.pyplot as plt
 import random
 
 
+temp = True;
+sounds = False;
 
 fig1 = graph.fig
 matplotlib.use("TkAgg")
+
+
 
 def draw_figure(canvas, figure):
     figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
@@ -21,9 +25,9 @@ def draw_figure(canvas, figure):
 # Define the window layout
 layout = [
     [sg.Text("Current Location")],
-    [sg.Canvas(key="-CANVAS-")],
-    [sg.Button("Ok")],
-    [sg.Button("Close")],
+    [sg.Canvas(key="-CANVAS-"),sg.Output(size=(30,10), key='-OUTPUT-')],
+    [sg.OK(), sg.Cancel()]
+
 ]
 
 # Create the form and show it without the plot
@@ -39,10 +43,6 @@ window = sg.Window(
 # Add the plot to the window
 ani = animation.FuncAnimation(graph.fig, graph.animate, interval=1000)
 draw_figure(window["-CANVAS-"].TKCanvas, fig1)
-
-print("AFTER THE ANIMATION")
-
-
 
 event, values = window.read()
 window.close()

@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import PySimpleGUI as sg
 import matplotlib
-import graph
+from Code import graph
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import random
@@ -13,8 +13,8 @@ sounds = False;
 
 fig1 = graph.fig
 matplotlib.use("TkAgg")
-
-
+sg.theme('Topanga')
+#DarkAmber,DarkBlue16,DarkTeal12,DarkTeal7,LightBlue5,Topanga
 
 def draw_figure(canvas, figure):
     figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
@@ -41,6 +41,7 @@ window = sg.Window(
 )
 
 # Add the plot to the window
+
 ani = animation.FuncAnimation(graph.fig, graph.animate, interval=1000)
 draw_figure(window["-CANVAS-"].TKCanvas, fig1)
 
